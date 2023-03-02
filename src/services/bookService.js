@@ -9,7 +9,7 @@ const getBooks = (Model) => async () => {
 
 const getBook = (Model) => async (bookID) => {
 	try {
-		return await Model.find({_id: bookID});
+		return await Model.findOne({_id: bookID});
 	} catch (err) {
 		console.error(err);
 		return {err: err.message};

@@ -168,7 +168,7 @@ describe('Accessing Endpoint: /api/books', () => {
 				.expect('Content-Type', /json/)
 				.expect(200)
 				.then((res) => {
-					expect(res.body.length).toBe(1);
+					expect(res.body._id).toBe(bookToModify._id);
 					done();
 				})
 				.catch((err) => {

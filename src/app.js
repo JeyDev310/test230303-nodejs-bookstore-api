@@ -7,24 +7,28 @@ const userRouter = require('./routes/userRouter');
 
 const app = express();
 
-appSetup(app);
-
-app.use('/api/books', bookRouter);
-app.use('/user', userRouter);
-
 const DB_OPTIONS = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 };
 
-mongoose.connect(appConfig.databaseUrl, DB_OPTIONS, (err) => {
-	if (err) {
+async function appMain() {
+	appSetup(app);
+
+	app.use('/api/books', bookRouter);
+	app.use('/user', userRouter);
+	
+	try {
+		await mongoose.connect(process.env.DB_URI, DB_OPTIONS);
+		console.log('Connected to mongoose server');
+	
+		app.listen(appConfig.port, () => {
+			console.log('> Server started on PORT: ', appConfig.port);
+		});		
+	} catch (e) {
 		console.error(err.message);
 		process.exit(1);
 	}
-	console.log('Connected to mongoose server');
+}
 
-	app.listen(appConfig.port, () => {
-		console.log('> Server started on PORT: ', appConfig.port);
-	});
-});
+appMain();
