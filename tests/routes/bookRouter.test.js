@@ -184,7 +184,7 @@ describe('Accessing Endpoint: /api/books', () => {
 					title: 'Test Book',
 					description: 'Description 1',
 					author: 'Test Author',
-					year: '1940',
+					year: 1940,
 					cover: 'cover',
 				})
 				.expect('Content-Type', /json/)
@@ -205,7 +205,7 @@ describe('Accessing Endpoint: /api/books', () => {
 				.send({
 					title: 'Updated Book',
 					author: 'Updated Author 22',
-					year: '1936',
+					year: 1936,
 					description: 'Updated Description22',
 					cover: 'Updated cover',
 				})
@@ -255,7 +255,7 @@ describe('Accessing Endpoint: /api/books', () => {
 				.send({
 					title: 'Updated Book',
 					author: 'Updated Author 22',
-					year: '1936',
+					year: 1936,
 					description: 'Updated Description22',
 					cover: 'Updated cover',
 				})
